@@ -19,9 +19,11 @@ PORT=3001
 
 ## Démarrage
 
+### Option 1 : Développement local
+
 **1. Démarrer PostgreSQL avec Docker :**
 ```bash
-docker-compose up -d
+docker-compose up db -d
 ```
 
 **2. Démarrer le serveur :**
@@ -29,7 +31,26 @@ docker-compose up -d
 npm start
 ```
 
+### Option 2 : Docker Compose (Production)
+
+**Démarrer tout avec Docker :**
+```bash
+docker-compose up -d
+```
+
+Cela démarre à la fois l'API et PostgreSQL dans des conteneurs.
+
 Le serveur démarre sur `http://localhost:3001` par défaut.
+
+### Option 3 : Build manuel de l'image
+
+```bash
+# Build l'image
+docker build -t todo-api .
+
+# Run le conteneur
+docker run -p 3001:3001 -e DATABASE_URL=postgresql://admin:admin123@localhost:5433/todo_db todo-api
+```
 
 ## Type de données
 
